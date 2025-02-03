@@ -19,6 +19,15 @@ def blogs():
 
     return render_template("posts.html", posts=posts)
 
+@app.route("/posts/<int:post_id>")
+def post_detail(post_id):
+    with open("data.json") as f:
+        posts = json.loads(f.read())
+    
+    post = list(filter(lambda post: post['id'] == post_id, posts))[0]
+    
+    return render_template('detail.html', post=post)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)

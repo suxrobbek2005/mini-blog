@@ -8,10 +8,15 @@
 <body>
 
     <h1>All Posts</h1>
+    <form action="/posts" method="post">
+        <label for="search">Search: </label>
+        <input type="text" name="search" placeholder="Title">
+        <button type="submit">Search</button>
+    </form>
 
     <ul>
-        {% for post in posts %}
-            <li>{{ post.title }}</li>
+        {% for blog in posts %}
+            <li><a href="{{url_for("post_detail", post_id=blog.id) }}">{{ blog.title }}</a></li>
         {% endfor %}
     </ul>
 
